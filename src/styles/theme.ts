@@ -16,12 +16,13 @@ export const {
   },
   theme: {
     colors: {
-      primary: "#F15156",
-      primary_super_light: "#FDECED",
-      primary_light: "#F75F64",
-      primary_dark: "#E44449",
+      red200: "#FDECED",
+      red300: "#FBE1E2",
+      red400: "#F75F64",
+      red500: "#F15156",
+      red600: "#E44449",
 
-      secondary: "#F4D35E",
+      yellow500: "#F4D35E",
 
       tertiary: "#0D3B66",
       tertiary_light: "#1c64a52e",

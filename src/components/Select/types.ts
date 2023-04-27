@@ -5,7 +5,6 @@ export type SelectProps = {
   label?: string;
   options?: SelectOptions;
   groups?: SelectGroups;
-  isSearchable?: boolean;
   limit?: number;
 
   triggerProps?: typeof Trigger.defaultProps;

@@ -82,7 +82,6 @@ export const PetsTemplates = () => {
               render={({ field }) => (
                 <DynamicSelect
                   placeholder="Cidade"
-                  isSearchable
                   inputProps={{
                     placeholder: "Busque pelo nome da cidade...",
                   }}
@@ -120,7 +119,6 @@ export const PetsTemplates = () => {
                 <DynamicSelect
                   label="Idade"
                   placeholder="Idade"
-                  isSearchable
                   groups={[
                     {
                       group: `Idades (0-30)`,
@@ -143,7 +141,6 @@ export const PetsTemplates = () => {
                 <DynamicSelect
                   label="Nível de energia"
                   placeholder="Nível de energia"
-                  isSearchable
                   groups={[
                     {
                       group: "Nível de energia",
@@ -166,7 +163,6 @@ export const PetsTemplates = () => {
                 <DynamicSelect
                   label="Nível de independência"
                   placeholder="Nível de independência"
-                  isSearchable
                   groups={[
                     {
                       group: "Nível de independência",
@@ -189,7 +185,6 @@ export const PetsTemplates = () => {
                 <DynamicSelect
                   label="Tamanho do animal"
                   placeholder="Tamanho do animal"
-                  isSearchable
                   groups={[
                     {
                       group: "Tamanho",
@@ -213,6 +208,37 @@ export const PetsTemplates = () => {
           <S.MainTotal>
             Encontre <span>324 amigos</span> na sua cidade
           </S.MainTotal>
+
+          <S.MainSelectContainer>
+            <Controller
+              control={control}
+              name="type"
+              render={({ field }) => (
+                <DynamicSelect
+                  placeholder="Selecione o tipo"
+                  options={[
+                    {
+                      label: "Cães e gatos",
+                      value: "ALL",
+                    },
+                    {
+                      label: "Cães",
+                      value: "DOGS",
+                    },
+                    {
+                      label: "Gatos",
+                      value: "CATS",
+                    },
+                  ]}
+                  triggerProps={{
+                    size: "small",
+                    variant: "filled_tertiary",
+                  }}
+                  {...field}
+                />
+              )}
+            />
+          </S.MainSelectContainer>
         </S.MainHeader>
       </S.Main>
     </S.Container>

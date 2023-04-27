@@ -5,4 +5,5 @@ export type FilterPetForm = {
   energyLevel: string;
   size: string;
   independencyLevel: string;
+  type: string;
 };

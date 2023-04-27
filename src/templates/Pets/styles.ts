@@ -14,11 +14,11 @@ export const Aside = styled("aside", {
 
   overflowY: "auto",
   overflowX: "hidden",
-  background: "$primary",
+  background: "$red500",
 });
 
 export const AsideHeader = styled("header", {
-  background: "$primary_dark",
+  background: "$red600",
   width: "$aside",
 
   padding: "$20 $10 $10 $10",
@@ -59,7 +59,7 @@ export const Main = styled("main", {
   overflowY: "auto",
   overflowX: "hidden",
 
-  background: "$primary_super_light",
+  background: "$red200",
 
   paddingRight: "$6",
   paddingLeft: "$6",
@@ -67,6 +67,10 @@ export const Main = styled("main", {
 
 export const MainHeader = styled("header", {
   marginTop: "153px",
+
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
 });
 
 export const MainTotal = styled("h3", {
@@ -77,4 +81,8 @@ export const MainTotal = styled("h3", {
   "& > span": {
     fontWeight: 900,
   },
+});
+
+export const MainSelectContainer = styled("div", {
+  width: "210px",
 });

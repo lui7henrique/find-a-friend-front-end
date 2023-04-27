@@ -5,7 +5,7 @@ const styles = {
   variants: {
     color: {
       yellow: {
-        background: "$secondary",
+        background: "$yellow500",
       },
     },
     variant: {

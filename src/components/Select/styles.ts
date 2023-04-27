@@ -20,7 +20,7 @@ export const Trigger = styled(Select.Trigger, {
     variant: {
       outline: {
         background: "transparent",
-        border: "2px solid $primary",
+        border: "2px solid $red500",
         color: "#fff",
 
         "&[data-placeholder]": {
@@ -28,7 +28,7 @@ export const Trigger = styled(Select.Trigger, {
         },
       },
       filled: {
-        background: "$primary_dark",
+        background: "$red600",
         color: "$white",
 
         "&[data-placeholder]": {
@@ -37,11 +37,20 @@ export const Trigger = styled(Select.Trigger, {
         },
       },
       filled_secondary: {
-        background: "$primary_light",
+        background: "$red400",
         color: "$white",
 
         "&[data-placeholder]": {
           color: "$white",
+          fontWeight: "bold",
+        },
+      },
+      filled_tertiary: {
+        background: "$red200",
+        color: "$tertiary",
+
+        "&[data-placeholder]": {
+          color: "$tertiary",
           fontWeight: "bold",
         },
       },
@@ -67,8 +76,9 @@ export const Trigger = styled(Select.Trigger, {
   outline: "none",
 
   display: "inline-flex",
-  width: "100%",
+  justifyContent: "space-between",
   alignItems: "center",
+  width: "100%",
 
   padding: "0 $4",
 

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { styled } from "src/styles/theme";
 
 export const HomeContainer = styled("div", {
-  background: "$primary",
+  background: "$red500",
   width: "100vw",
   height: "100vh",
 

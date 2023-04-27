@@ -119,7 +119,6 @@ export const HomeTemplate = () => {
                 render={({ field }) => (
                   <DynamicSelect
                     placeholder="Selecione uma cidade..."
-                    isSearchable
                     inputProps={{
                       placeholder: "Busque pelo nome da cidade...",
                     }}
