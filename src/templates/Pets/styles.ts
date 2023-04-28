@@ -76,7 +76,7 @@ export const MainHeader = styled("header", {
 export const MainTotal = styled("h3", {
   fontSize: "$5",
   fontWeight: 500,
-  color: "$tertiary",
+  color: "$blue500",
 
   "& > span": {
     fontWeight: 900,
@@ -85,4 +85,12 @@ export const MainTotal = styled("h3", {
 
 export const MainSelectContainer = styled("div", {
   width: "210px",
+});
+
+export const MainList = styled("div", {
+  display: "grid",
+  gridTemplateColumns: "repeat(4, 1fr)",
+  gap: "$9",
+
+  marginTop: "$10",
 });

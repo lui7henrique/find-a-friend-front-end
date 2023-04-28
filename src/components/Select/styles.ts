@@ -46,11 +46,11 @@ export const Trigger = styled(Select.Trigger, {
         },
       },
       filled_tertiary: {
-        background: "$red200",
-        color: "$tertiary",
+        background: "$red300",
+        color: "$blue500",
 
         "&[data-placeholder]": {
-          color: "$tertiary",
+          color: "$blue500",
           fontWeight: "bold",
         },
       },
@@ -90,7 +90,7 @@ export const Trigger = styled(Select.Trigger, {
   fontWeight: "bold",
 
   "&[data-placeholder]": {
-    color: "$tertiary",
+    color: "$blue500",
   },
 });
 
@@ -122,12 +122,12 @@ export const GroupLabel = styled(Select.Label, {
   fontWeight: 800,
   lineHeight: "25px",
 
-  color: "$tertiary",
+  color: "$blue500",
 });
 
 export const Separator = styled(Select.Separator, {
   height: "1px",
-  backgroundColor: "$tertiary",
+  backgroundColor: "$blue500",
   margin: "5px",
   opacity: 0.2,
 });

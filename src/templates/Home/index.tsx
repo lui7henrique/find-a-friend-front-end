@@ -11,6 +11,7 @@ import { ibge } from "src/services/ibge";
 
 import * as S from "./styles";
 import { SearchPetForm } from "./types";
+import { useRouter } from "next/router";
 
 const DynamicSelect = dynamic(() => import("../../components/Select"), {
   loading: () => <></>,
@@ -18,6 +19,7 @@ const DynamicSelect = dynamic(() => import("../../components/Select"), {
 });
 
 export const HomeTemplate = () => {
+  const { push } = useRouter();
   const { watch, control, handleSubmit } = useForm<SearchPetForm>();
   const state = watch("state") ?? "SP";
   const isDisabledSubmitButton = !watch("city");
@@ -40,9 +42,14 @@ export const HomeTemplate = () => {
       })
     : [];
 
-  const onSubmit = useCallback((data: SearchPetForm) => {
-    console.log({ data });
-  }, []);
+  const onSubmit = useCallback(
+    async (data: SearchPetForm) => {
+      const { city } = data;
+
+      await push(`/pets?state=${state}&city=${city}`);
+    },
+    [push, state]
+  );
 
   return (
     <S.HomeContainer>

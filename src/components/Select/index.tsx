@@ -7,7 +7,7 @@ import { SelectItem } from "../SelectItem";
 import * as S from "./styles";
 import { SelectProps } from "./types";
 
-const LIMIT = 200;
+const LIMIT = 400;
 
 const Select = (props: SelectProps) => {
   const {

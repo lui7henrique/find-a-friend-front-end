@@ -24,9 +24,9 @@ export const {
 
       yellow500: "#F4D35E",
 
-      tertiary: "#0D3B66",
-      tertiary_light: "#1c64a52e",
-      tertiary_dark: "#0a2e4f",
+      blue400: "#1c64a52e",
+      blue500: "#0D3B66",
+      blue600: "#0a2e4f",
 
       white: "#FFF",
       shape: "#CCC",

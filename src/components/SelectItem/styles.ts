@@ -19,13 +19,13 @@ export const Item = styled(Select.Item, {
 
   "&[data-highlighted]": {
     outline: "none",
-    backgroundColor: "$tertiary",
+    backgroundColor: "$blue500",
 
     "& > span": { color: "$white" },
   },
 
   "> span": {
-    color: "$tertiary",
+    color: "$blue500",
   },
 });
 

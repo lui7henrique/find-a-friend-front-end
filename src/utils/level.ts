@@ -1,8 +1,8 @@
-type EnergyLevel = "LOW" | "MEDIUM" | "HIGH";
+export type Level = "LOW" | "MEDIUM" | "HIGH";
 
 export const levelOptions: Array<{
   label: string;
-  value: EnergyLevel;
+  value: Level;
 }> = [
   {
     label: "Baixo",
