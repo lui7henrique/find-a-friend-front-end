@@ -15,6 +15,7 @@ import { sizeOptions } from "src/utils/size";
 
 import { FilterPetForm } from "./types";
 import { MagnifyingGlass } from "phosphor-react";
+import { useRouter } from "next/router";
 
 const DynamicSelect = dynamic(() => import("../../components/Select"), {
   loading: () => <></>,
@@ -22,6 +23,7 @@ const DynamicSelect = dynamic(() => import("../../components/Select"), {
 });
 
 export const PetsFilters = () => {
+  const { query } = useRouter();
   const { watch, control } = useFormContext<FilterPetForm>();
   const state = watch("state") ?? "SP";
   const isDisabledSubmitButton = !watch("city");
@@ -43,6 +45,9 @@ export const PetsFilters = () => {
         return option;
       })
     : [];
+
+  const queryState = String(query.state || "SP");
+  const queryCity = String(query.city || districtOptions[0]?.value);
 
   return (
     <S.Aside>
@@ -67,7 +72,7 @@ export const PetsFilters = () => {
                     options: statesOptions,
                   },
                 ]}
-                defaultValue="SP"
+                defaultValue={queryState}
                 triggerProps={{
                   size: "small",
                   variant: "outline",
@@ -92,6 +97,7 @@ export const PetsFilters = () => {
                     options: districtOptions,
                   },
                 ]}
+                defaultValue={queryCity}
                 triggerProps={{
                   size: "small",
                   variant: "outline",

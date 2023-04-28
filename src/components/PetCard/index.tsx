@@ -1,7 +1,9 @@
 import { Pet } from "src/services/api/types";
+import { ReactNode, useMemo } from "react";
 
 import * as S from "./styles";
-import { Cat, Dog, PawPrint } from "phosphor-react";
+import { Cat, Dog } from "phosphor-react";
+import { Type } from "src/utils/type";
 
 type PetCardProps = {
   pet: Pet;
@@ -9,31 +11,30 @@ type PetCardProps = {
 
 export const PetCard = (props: PetCardProps) => {
   const {
-    pet: { name },
+    pet: { name, type },
   } = props;
 
-  function randomIntFromInterval(min: number, max: number) {
-    // min and max included
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
+  const iconByType = useMemo(() => {
+    const icons: Record<Type, ReactNode> = {
+      CAT: <Cat color="#fff" size={32} weight="fill" />,
+      DOG: <Dog color="#fff" size={32} weight="fill" />,
+    };
+
+    return icons[type];
+  }, [type]);
 
   return (
     <S.Card>
       <S.ImageContainer>
         <S.Image
-          src={`https://source.unsplash.com/random/128${randomIntFromInterval(
-            0,
-            9
-          )}x72${randomIntFromInterval(0, 9)}/?dog`}
+          src={`https://source.unsplash.com/random/128$0x720/?dog`}
           fill
           alt={name}
         />
       </S.ImageContainer>
 
       <S.Body>
-        <S.IconContainer>
-          <Dog color="#fff" size={32} weight="fill" />
-        </S.IconContainer>
+        <S.IconContainer>{iconByType}</S.IconContainer>
         <S.Name>{name}</S.Name>
       </S.Body>
     </S.Card>

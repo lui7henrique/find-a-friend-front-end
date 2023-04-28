@@ -43,6 +43,7 @@ export const PetsList = () => {
                     value: "CATS",
                   },
                 ]}
+                defaultValue="ALL"
                 triggerProps={{
                   size: "small",
                   variant: "filled_tertiary",
