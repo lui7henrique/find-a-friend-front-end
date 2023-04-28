@@ -27,14 +27,14 @@ export const PetCard = (props: PetCardProps) => {
     <S.Card>
       <S.ImageContainer>
         <S.Image
-          src={`https://source.unsplash.com/random/128$0x720/?dog`}
+          src={`https://source.unsplash.com/random/128$0x720/?${type}`}
           fill
           alt={name}
         />
       </S.ImageContainer>
 
       <S.Body>
-        <S.IconContainer>{iconByType}</S.IconContainer>
+        <S.IconContainer type={type}>{iconByType}</S.IconContainer>
         <S.Name>{name}</S.Name>
       </S.Body>
     </S.Card>

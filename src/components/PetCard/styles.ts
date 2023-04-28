@@ -15,6 +15,9 @@ export const Card = styled("div", {
   background: "$white",
   borderRadius: "$lg",
   padding: "4px",
+
+  transition: "all 0.2s ease-in-out",
+  cursor: "pointer",
 });
 
 export const ImageContainer = styled("figure", {
@@ -59,9 +62,21 @@ export const Name = styled("h5", {
   fontWeight: 700,
 
   marginTop: "$4",
+  transition: "all 0.2s ease-in-out",
 });
 
-export const IconContainer = styled("div", {
+export const IconContainer = styled("span", {
+  variants: {
+    type: {
+      CAT: {
+        background: "$yellow500",
+      },
+      DOG: {
+        background: "$red500",
+      }
+    }
+  },
+
   border: "3px solid $white",
   borderRadius: "10px",
 
@@ -75,4 +90,5 @@ export const IconContainer = styled("div", {
   justifyContent: "center",
 
   zIndex: 2,
+  transition: "all 0.2s ease-in-out",
 });

@@ -19,7 +19,7 @@ export const PetsList = () => {
     <S.Main>
       <S.MainHeader>
         <S.MainTotal>
-          Encontre <span>324 amigos</span> na sua cidade
+          Encontre <span>{data?.pets.length} amigos</span> na sua cidade
         </S.MainTotal>
 
         <S.MainSelectContainer>
