@@ -21,3 +21,8 @@ export type Pet = {
   ambient: Size;
   type: Type
 };
+
+
+export type GetPetParams = {
+  type?: Type
+}

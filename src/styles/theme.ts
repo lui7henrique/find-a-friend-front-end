@@ -1,5 +1,22 @@
 import { createStitches, defaultThemeMap } from "@stitches/react";
 
+export const colors = {
+  red200: "#FDECED",
+  red300: "#FBE1E2",
+  red400: "#F75F64",
+  red500: "#F15156",
+  red600: "#E44449",
+
+  yellow500: "#F4D35E",
+
+  blue400: "#1c64a52e",
+  blue500: "#0D3B66",
+  blue600: "#0a2e4f",
+
+  white: "#FFF",
+  shape: "#CCC",
+}
+
 export const {
   config,
   styled,
@@ -15,22 +32,7 @@ export const {
     width: "widths",
   },
   theme: {
-    colors: {
-      red200: "#FDECED",
-      red300: "#FBE1E2",
-      red400: "#F75F64",
-      red500: "#F15156",
-      red600: "#E44449",
-
-      yellow500: "#F4D35E",
-
-      blue400: "#1c64a52e",
-      blue500: "#0D3B66",
-      blue600: "#0a2e4f",
-
-      white: "#FFF",
-      shape: "#CCC",
-    },
+    colors,
     space: {
       px: "1px",
       0.5: "0.125rem",

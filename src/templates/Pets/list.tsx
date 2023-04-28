@@ -1,10 +1,15 @@
 import dynamic from "next/dynamic";
-import { Controller, useForm } from "react-hook-form";
-
-import * as S from "./styles";
 import { useQuery } from "react-query";
+import { useMemo } from "react";
+import { Controller, useFormContext } from "react-hook-form";
+
 import { api } from "src/services/api";
 import { PetCard } from "src/components/PetCard";
+
+import { FilterPetForm } from "./types";
+
+import * as S from "./styles";
+import { useRouter } from "next/router";
 
 const DynamicSelect = dynamic(() => import("../../components/Select"), {
   loading: () => <></>,
@@ -12,15 +17,49 @@ const DynamicSelect = dynamic(() => import("../../components/Select"), {
 });
 
 export const PetsList = () => {
-  const { data } = useQuery(["pets"], async () => await api.getPets());
-  const { control } = useForm();
+  const { query } = useRouter();
+  const { control, watch } = useFormContext<FilterPetForm>();
+
+  const { type, age, energy_level, independency_level, size } = watch();
+  const state = query.state ?? "SP";
+  const city = query.city;
+
+  const params = {
+    ...(type && type !== "ALL" && { type }),
+    ...(age && age !== "ALL" && { age: String(age) }),
+    ...(energy_level && energy_level !== "ALL" && { energy_level }),
+    ...(independency_level &&
+      independency_level !== "ALL" && { independency_level }),
+    ...(size && size !== "ALL" && { size }),
+    ...(state && state !== "ALL" && { state }),
+    ...(city && city !== "ALL" && { city }),
+  };
+
+  const { data, isLoading } = useQuery(
+    ["pets", type, age, energy_level, independency_level, size, city, state],
+    async () => await api.getPets(params)
+  );
+
+  const totalMessage = useMemo(() => {
+    if (isLoading) {
+      return <>Procurando...</>;
+    }
+
+    if (!data?.pets.length) {
+      return <>Nenhum resultado foi encontrado 😿</>;
+    }
+
+    return (
+      <>
+        Encontre <span>{data?.pets.length} amigos</span> na sua cidade
+      </>
+    );
+  }, [data, isLoading]);
 
   return (
     <S.Main>
       <S.MainHeader>
-        <S.MainTotal>
-          Encontre <span>{data?.pets.length} amigos</span> na sua cidade
-        </S.MainTotal>
+        <S.MainTotal>{totalMessage}</S.MainTotal>
 
         <S.MainSelectContainer>
           <Controller
@@ -36,11 +75,11 @@ export const PetsList = () => {
                   },
                   {
                     label: "Cães",
-                    value: "DOGS",
+                    value: "DOG",
                   },
                   {
                     label: "Gatos",
-                    value: "CATS",
+                    value: "CAT",
                   },
                 ]}
                 defaultValue="ALL"

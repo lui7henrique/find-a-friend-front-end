@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import { useFormContext, Controller } from "react-hook-form";
+import { useCallback } from "react";
 import dynamic from "next/dynamic";
 
 import * as S from "./styles";
@@ -23,8 +24,8 @@ const DynamicSelect = dynamic(() => import("../../components/Select"), {
 });
 
 export const PetsFilters = () => {
-  const { query } = useRouter();
-  const { watch, control } = useFormContext<FilterPetForm>();
+  const { query, push } = useRouter();
+  const { watch, control, handleSubmit } = useFormContext<FilterPetForm>();
   const state = watch("state") ?? "SP";
   const isDisabledSubmitButton = !watch("city");
 
@@ -49,6 +50,15 @@ export const PetsFilters = () => {
   const queryState = String(query.state || "SP");
   const queryCity = String(query.city || districtOptions[0]?.value);
 
+  const onSubmit = useCallback(
+    async (data: FilterPetForm) => {
+      const { city, state } = data;
+
+      await push(`/pets?state=${state ?? queryState}&city=${city}`);
+    },
+    [push, queryState]
+  );
+
   return (
     <S.Aside>
       <S.AsideHeader>
@@ -59,7 +69,7 @@ export const PetsFilters = () => {
           alt="Logo"
         />
 
-        <S.AsideHeaderFilters>
+        <S.AsideHeaderFilters onSubmit={handleSubmit(onSubmit)}>
           <Controller
             control={control}
             name="state"
@@ -129,9 +139,16 @@ export const PetsFilters = () => {
                 groups={[
                   {
                     group: `Idades (0-30)`,
-                    options: ageOptions,
+                    options: [
+                      {
+                        label: "Todas",
+                        value: "ALL",
+                      },
+                      ...ageOptions,
+                    ],
                   },
                 ]}
+                defaultValue="ALL"
                 triggerProps={{
                   size: "small",
                   variant: "filled_secondary",
@@ -143,7 +160,7 @@ export const PetsFilters = () => {
 
           <Controller
             control={control}
-            name="energyLevel"
+            name="energy_level"
             render={({ field }) => (
               <DynamicSelect
                 label="Nível de energia"
@@ -151,9 +168,16 @@ export const PetsFilters = () => {
                 groups={[
                   {
                     group: "Nível de energia",
-                    options: levelOptions,
+                    options: [
+                      {
+                        label: "Todas",
+                        value: "ALL",
+                      },
+                      ...levelOptions,
+                    ],
                   },
                 ]}
+                defaultValue="ALL"
                 triggerProps={{
                   size: "small",
                   variant: "filled_secondary",
@@ -165,7 +189,7 @@ export const PetsFilters = () => {
 
           <Controller
             control={control}
-            name="independencyLevel"
+            name="independency_level"
             render={({ field }) => (
               <DynamicSelect
                 label="Nível de independência"
@@ -173,9 +197,16 @@ export const PetsFilters = () => {
                 groups={[
                   {
                     group: "Nível de independência",
-                    options: levelOptions,
+                    options: [
+                      {
+                        label: "Todos",
+                        value: "ALL",
+                      },
+                      ...levelOptions,
+                    ],
                   },
                 ]}
+                defaultValue="ALL"
                 triggerProps={{
                   size: "small",
                   variant: "filled_secondary",
@@ -195,9 +226,16 @@ export const PetsFilters = () => {
                 groups={[
                   {
                     group: "Tamanho",
-                    options: sizeOptions,
+                    options: [
+                      {
+                        label: "Todos",
+                        value: "ALL",
+                      },
+                      ...sizeOptions,
+                    ],
                   },
                 ]}
+                defaultValue="ALL"
                 triggerProps={{
                   size: "small",
                   variant: "filled_secondary",

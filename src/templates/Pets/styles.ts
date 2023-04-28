@@ -28,7 +28,7 @@ export const AsideLogo = styled(Image, {
   marginBottom: "$6",
 });
 
-export const AsideHeaderFilters = styled("div", {
+export const AsideHeaderFilters = styled("form", {
   display: "grid",
   gridTemplateColumns: "1fr 2fr auto",
   gap: "$3",
