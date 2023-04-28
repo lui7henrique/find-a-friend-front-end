@@ -27,7 +27,6 @@ export const PetsFilters = () => {
   const { query, push } = useRouter();
   const { watch, control, handleSubmit } = useFormContext<FilterPetForm>();
   const state = watch("state") ?? "SP";
-  const isDisabledSubmitButton = !watch("city");
 
   const { data } = useQuery(["districts", state], async () => {
     const data = await ibge.getDistrictsByUF(state);
@@ -57,6 +56,10 @@ export const PetsFilters = () => {
       await push(`/pets?state=${state ?? queryState}&city=${city}`);
     },
     [push, queryState]
+  );
+
+  const isDisabledSubmitButton = !districtOptions.some(
+    (option) => option.value === watch("city")
   );
 
   return (
