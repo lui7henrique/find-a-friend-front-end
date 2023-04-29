@@ -12,6 +12,7 @@ import { ibge } from "src/services/ibge";
 import * as S from "./styles";
 import { SearchPetForm } from "./types";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const DynamicSelect = dynamic(() => import("../../components/Select"), {
   loading: () => <></>,
@@ -22,7 +23,6 @@ export const HomeTemplate = () => {
   const { push } = useRouter();
   const { watch, control, handleSubmit } = useForm<SearchPetForm>();
   const state = watch("state") ?? "SP";
-  const isDisabledSubmitButton = !watch("city");
 
   const { data } = useQuery(["districts", state], async () => {
     const data = await ibge.getDistrictsByUF(state);
@@ -49,6 +49,10 @@ export const HomeTemplate = () => {
       await push(`/pets?state=${state}&city=${city}`);
     },
     [push, state]
+  );
+
+  const isDisabledSubmitButton = !districtOptions.some(
+    (option) => option.value === watch("city")
   );
 
   return (
@@ -85,14 +89,26 @@ export const HomeTemplate = () => {
         </S.HomeHero>
 
         <S.HomeFooter>
-          <S.HomeSubtitle
-            data-aos="fade-right"
-            data-aos-delay="700"
-            data-aos-duration="200"
-          >
-            Encontre o animal de estimação ideal
-            <br /> para seu estilo de vida!
-          </S.HomeSubtitle>
+          <S.HomeFooterTexts>
+            <S.HomeSubtitle
+              data-aos="fade-right"
+              data-aos-delay="700"
+              data-aos-duration="200"
+            >
+              Encontre o animal de estimação ideal
+              <br /> para seu estilo de vida!
+            </S.HomeSubtitle>
+
+            <S.HomeSupport
+              data-aos="fade-right"
+              data-aos-delay="1200"
+              data-aos-duration="200"
+            >
+              <Link href="/org/login">
+                Ou entre como organização, clicando aqui!
+              </Link>
+            </S.HomeSupport>
+          </S.HomeFooterTexts>
 
           <S.HomeSearch
             data-aos="fade-down"

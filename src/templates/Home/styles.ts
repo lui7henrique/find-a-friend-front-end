@@ -46,14 +46,28 @@ export const HomeFooter = styled("footer", {
 
   width: "100%",
   justifyContent: "space-between",
-  alignItems: "center",
+  alignItems: "flex-start",
 
   marginTop: "$24",
+});
+
+export const HomeFooterTexts = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "$2",
 });
 
 export const HomeSubtitle = styled("h2", {
   fontSize: "$2xl",
   fontWeight: 600,
+});
+
+export const HomeSupport = styled("sup", {
+  color: "#ffffff8c",
+
+  a: {
+    color: "#ffffff8c",
+  },
 });
 
 export const HomeSearch = styled("form", {
