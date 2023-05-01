@@ -21,7 +21,6 @@ export const Container = styled("button", {
     variant: "primary",
   },
 
-  width: "100%",
   padding: "$5",
 
   display: "flex",
