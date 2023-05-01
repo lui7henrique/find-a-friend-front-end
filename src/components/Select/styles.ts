@@ -6,13 +6,19 @@ export const Root = styled(Select.Root, {});
 export const Container = styled("div", {
   display: "flex",
   flexDirection: "column",
-  gap: "$3",
+  gap: "$2",
 });
 
 export const Label = styled("label", {
-  fontSize: "$3",
-  fontWeight: 500,
-  color: "$white",
+  variants: {
+    variant: {
+      default: { fontSize: "$3", fontWeight: 500, color: "$white" },
+      input: { fontSize: "$md", color: "$blue500", fontWeight: 600 },
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+  },
 });
 
 export const Trigger = styled(Select.Trigger, {
@@ -52,6 +58,22 @@ export const Trigger = styled(Select.Trigger, {
         "&[data-placeholder]": {
           color: "$blue500",
           fontWeight: "bold",
+        },
+      },
+      input: {
+        width: "100%",
+        height: "100%",
+
+        color: "$blue500",
+        borderRadius: "$md",
+
+        background: "$gray100",
+        border: "1px solid $gray200",
+        padding: "$4",
+
+        "&[data-placeholder]": {
+          color: "$blue300",
+          fontWeight: 500,
         },
       },
     },

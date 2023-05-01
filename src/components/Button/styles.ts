@@ -29,7 +29,7 @@ export const Container = styled("button", {
 
   borderRadius: "$lg",
   fontWeight: 700,
-  fontSize: "$lg",
+  fontSize: "$md",
 
   cursor: "pointer",
 });

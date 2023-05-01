@@ -1,4 +1,5 @@
 import Image from "next/image";
+import NextLink from "next/link";
 import { Limiter } from "src/components/Limiter";
 import { styled } from "src/styles/theme";
 
@@ -11,6 +12,8 @@ export const Container = styled(Limiter, {
   display: "flex",
   gap: "$32",
 });
+
+export const AsideContainer = styled("div", {});
 
 export const Aside = styled("aside", {
   background: "$red500",
@@ -26,6 +29,8 @@ export const Aside = styled("aside", {
   justifyContent: "space-between",
 
   padding: "$8",
+  position: "sticky",
+  top: "$4",
 });
 
 export const Logo = styled(Image, {
@@ -63,10 +68,18 @@ export const FormFields = styled("div", {
   gap: "$4",
 });
 
-export const Buttons = styled("div", {
-  marginTop: "$20",
+export const Link = styled(NextLink, {
+  fontSize: "$md",
+  fontWeight: 700,
+  color: "$blue500",
+  textAlign: "center",
 
-  display: "flex",
-  flexDirection: "column",
-  gap: "$4",
+  padding: "$5",
+  textDecoration: "underline",
+});
+
+export const Grid = styled("div", {
+  display: "grid",
+  gridTemplateColumns: "repeat(2, 1fr)",
+  gap: "$2",
 });

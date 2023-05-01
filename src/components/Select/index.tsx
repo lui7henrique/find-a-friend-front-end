@@ -26,7 +26,13 @@ const Select = (props: SelectProps) => {
   return (
     <S.Root onValueChange={onChange} {...rootProps}>
       <S.Container>
-        {label && <S.Label>{label}</S.Label>}
+        {label && (
+          <S.Label
+            variant={triggerProps?.variant === "input" ? "input" : undefined}
+          >
+            {label}
+          </S.Label>
+        )}
 
         <S.Trigger {...triggerProps}>
           <S.Value placeholder={placeholder} />

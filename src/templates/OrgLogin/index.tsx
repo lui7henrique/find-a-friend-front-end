@@ -1,8 +1,11 @@
 import { FieldText } from "src/components/FieldText";
 import * as S from "./styles";
 import { Button } from "src/components/Button";
+import { useRouter } from "next/router";
 
 export const OrgLoginTemplate = () => {
+  const { push } = useRouter();
+
   return (
     <S.Container>
       <S.Aside>
@@ -20,7 +23,9 @@ export const OrgLoginTemplate = () => {
 
         <S.Buttons>
           <Button>Entrar</Button>
-          <Button variant="secondary">Cadastrar minha organização</Button>
+          <Button variant="secondary" onClick={() => push("/org/register")}>
+            Cadastrar minha organização
+          </Button>
         </S.Buttons>
       </S.Form>
     </S.Container>
