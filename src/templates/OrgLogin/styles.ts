@@ -61,3 +61,11 @@ export const FormFields = styled("div", {
   flexDirection: "column",
   gap: "$4",
 });
+
+export const Buttons = styled("div", {
+  marginTop: "$20",
+
+  display: "flex",
+  flexDirection: "column",
+  gap: "$4",
+});
