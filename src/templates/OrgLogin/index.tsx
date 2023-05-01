@@ -1,3 +1,4 @@
+import { FieldText } from "src/components/FieldText";
 import * as S from "./styles";
 
 export const OrgLoginTemplate = () => {
@@ -11,6 +12,10 @@ export const OrgLoginTemplate = () => {
       </S.Aside>
       <S.Form>
         <S.Title>Boas-vindas!</S.Title>
+        <S.FormFields>
+          <FieldText label="E-mail" placeholder="email@org.com" type="email" />
+          <FieldText label="Senha" placeholder="*********" type="password" />
+        </S.FormFields>
       </S.Form>
     </S.Container>
   );

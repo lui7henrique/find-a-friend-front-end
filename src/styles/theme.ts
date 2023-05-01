@@ -15,7 +15,10 @@ export const colors = {
 
   white: "#FFF",
   shape: "#CCC",
-}
+
+  gray100: "#F5F8FA",
+  gray200: "#D3E2E5",
+};
 
 export const {
   config,

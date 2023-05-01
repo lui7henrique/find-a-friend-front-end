@@ -45,9 +45,19 @@ export const Form = styled("div", {
   flexDirection: "column",
 
   paddingTop: "$20",
+  width: "100%",
+  maxWidth: "488px",
 });
 
 export const Title = styled("h1", {
   fontSize: "$5xl",
   color: "$blue500",
+
+  marginBottom: "$24",
+});
+
+export const FormFields = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "$4",
 });
