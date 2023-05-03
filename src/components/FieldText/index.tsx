@@ -15,7 +15,7 @@ const BaseFieldText: ForwardRefRenderFunction<
 > = (props, ref) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const { label, ...fieldProps } = props;
+  const { label, disabled, ...fieldProps } = props;
 
   const { type } = fieldProps;
   const isPassword = type === "password";
@@ -49,7 +49,7 @@ const BaseFieldText: ForwardRefRenderFunction<
     <S.Container>
       <S.Label>{label}</S.Label>
 
-      <S.Field>
+      <S.Field disabled={disabled}>
         <S.Input
           {...fieldProps}
           ref={ref}

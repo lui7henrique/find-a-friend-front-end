@@ -14,6 +14,15 @@ export const Label = styled("label", {
 });
 
 export const Field = styled("div", {
+  variants: {
+    disabled: {
+      true: {
+        opacity: 0.5,
+        cursor: "not-allowed",
+      },
+    },
+  },
+
   background: "$gray100",
   border: "1px solid $gray200",
   padding: "$4",
@@ -26,6 +35,17 @@ export const Field = styled("div", {
       "-webkit-box-shadow": "0 0 0 30px #F5F8FA inset !important",
       "-webkit-text-fill-color": "#0D3B66",
     },
+
+  /* Chrome, Safari, Edge, Opera */
+  "input::-webkit-outer-spin-button, input::-webkit-inner-spin-button": {
+    "-webkit-appearance": "none",
+    margin: 0,
+  },
+
+  /* Firefox */
+  "input[type=number]": {
+    "-moz-appearance": "textfield",
+  },
 });
 
 export const Input = styled("input", {

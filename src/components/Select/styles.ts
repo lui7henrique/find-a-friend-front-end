@@ -62,7 +62,7 @@ export const Trigger = styled(Select.Trigger, {
       },
       input: {
         width: "100%",
-        height: "100%",
+        height: "100% !important",
 
         color: "$blue500",
         borderRadius: "$md",
@@ -84,6 +84,13 @@ export const Trigger = styled(Select.Trigger, {
       },
       medium: {
         height: "72px",
+      },
+    },
+    disabled: {
+      true: {
+        opacity: 0.5,
+        cursor: "not-allowed",
+        pointerEvents: "none",
       },
     },
   },

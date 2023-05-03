@@ -1,7 +1,7 @@
 export type OrgRegisterFormType = {
   responsible_name: string;
   email: string;
-  postalCode: string;
+  postal_code: string;
   address: string;
   neighborhood: string;
   number: string;

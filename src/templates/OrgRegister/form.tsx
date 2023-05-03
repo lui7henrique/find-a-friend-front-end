@@ -1,15 +1,15 @@
 import dynamic from "next/dynamic";
+import { useEffect, useCallback } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import { FieldText } from "src/components/FieldText";
-import * as S from "./styles";
+
 import { Button } from "src/components/Button";
 import { statesOptions } from "src/utils/states";
-import { SelectOptions } from "src/components/Select/types";
 
 import { OrgRegisterFormType } from "./types";
-import { useQuery } from "react-query";
-import { ibge } from "src/services/ibge";
+import * as S from "./styles";
+import { viacep } from "src/services/viacep";
 
 const DynamicSelect = dynamic(() => import("../../components/Select"), {
   loading: () => <></>,
@@ -17,36 +17,61 @@ const DynamicSelect = dynamic(() => import("../../components/Select"), {
 });
 
 export const OrgRegisterForm = () => {
-  const { control, watch } = useForm<OrgRegisterFormType>();
+  const { control, watch, register, setValue } = useForm<OrgRegisterFormType>();
 
-  const state = watch("state") ?? "SP";
+  const postalCode = watch("postal_code");
 
-  const { data } = useQuery(["districts", state], async () => {
-    const data = await ibge.getDistrictsByUF(state);
+  // const districtOptions: SelectOptions = useMemo(
+  //   () =>
+  //     data
+  //       ? data?.map((district) => {
+  //           const { nome } = district;
+  //           const option = {
+  //             label: nome,
+  //             value: nome,
+  //           };
 
-    return data;
-  });
+  //           return option;
+  //         })
+  //       : [],
+  //   [data]
+  // );
 
-  const districtOptions: SelectOptions = data
-    ? data?.map((district) => {
-        const { nome } = district;
-        const option = {
-          label: nome,
-          value: nome,
-        };
+  const setFieldsByPostalCode = useCallback(async () => {
+    const { logradouro, bairro, uf, localidade } =
+      await viacep.getAddressByPostalCode(postalCode);
 
-        return option;
-      })
-    : [];
+    setValue("address", logradouro);
+    setValue("state", uf);
+    setValue("neighborhood", bairro);
+    setValue("city", localidade);
+  }, [postalCode, setValue]);
+
+  useEffect(() => {
+    if (postalCode?.length === 8) {
+      setFieldsByPostalCode();
+    }
+  }, [postalCode, setFieldsByPostalCode]);
 
   return (
     <S.Form>
       <S.Title>Cadastre sua organização </S.Title>
 
       <S.FormFields>
-        <FieldText label="Nome do responsável" placeholder="John Doe" />
+        <FieldText
+          label="Nome do responsável"
+          placeholder="John Doe"
+          {...register("responsible_name")}
+        />
+
         <FieldText label="Whatsapp" placeholder="(99) 999999-9999" />
-        <FieldText label="CEP" placeholder="12345-000" />
+
+        <FieldText
+          label="CEP"
+          placeholder="12345-000"
+          {...register("postal_code")}
+        />
+
         <S.Grid>
           <Controller
             control={control}
@@ -63,42 +88,40 @@ export const OrgRegisterForm = () => {
                 ]}
                 triggerProps={{
                   variant: "input",
+                  disabled: true,
                 }}
                 {...field}
               />
             )}
           />
 
-          <Controller
-            control={control}
-            name="city"
-            render={({ field }) => (
-              <DynamicSelect
-                label="Cidade"
-                placeholder="Selecione uma cidade..."
-                inputProps={{
-                  placeholder: "Busque pelo nome da cidade...",
-                }}
-                triggerProps={{
-                  variant: "input",
-                }}
-                groups={[
-                  {
-                    group: `Cidades (${state})`,
-                    options: districtOptions,
-                  },
-                ]}
-                {...field}
-              />
-            )}
+          <FieldText
+            label="Cidade"
+            placeholder="Cidade"
+            disabled
+            {...register("city")}
           />
         </S.Grid>
-        <FieldText label="Bairro" placeholder="Bairro dos cães" />
-        <FieldText label="Rua" placeholder="7" />
+
+        <FieldText
+          label="Bairro"
+          placeholder="Bairro dos cães"
+          disabled
+          {...register("neighborhood")}
+        />
+
+        <FieldText
+          label="Rua"
+          placeholder="7"
+          disabled
+          {...register("address")}
+        />
+
         <FieldText
           label="Número"
-          placeholder="Rua Dos Gatos Malhados"
+          placeholder="7"
           type="number"
+          {...register("number")}
         />
 
         <FieldText label="E-mail" placeholder="email@org.com" type="email" />
