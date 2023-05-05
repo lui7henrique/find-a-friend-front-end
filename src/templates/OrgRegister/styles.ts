@@ -45,7 +45,7 @@ export const DogsWrapper = styled("figure", {
 
 export const Dogs = styled(Image, {});
 
-export const Form = styled("div", {
+export const Form = styled("form", {
   display: "flex",
   flexDirection: "column",
 

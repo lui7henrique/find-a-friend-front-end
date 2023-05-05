@@ -8,7 +8,8 @@ const api = axios.create({
 export const viacep = {
   getAddressByPostalCode: async (postalCode: string) => {
     const { data } = await api.get<GetAddressByPostalCode>(
-      `/ws/${postalCode}/json/`
+      `/ws/${postalCode}/json/`,
+      {}
     );
 
     return data;

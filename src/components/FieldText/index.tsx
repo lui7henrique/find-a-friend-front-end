@@ -8,16 +8,17 @@ import {
 import { FieldTextProps } from "./types";
 
 import * as S from "./styles";
+import { Tooltip } from "../Tooltip";
 
 const BaseFieldText: ForwardRefRenderFunction<
   HTMLInputElement,
   FieldTextProps
 > = (props, ref) => {
+  const { label, mask, error, disabled, ...fieldProps } = props;
+  const { type } = fieldProps;
+
   const [showPassword, setShowPassword] = useState(false);
 
-  const { label, disabled, ...fieldProps } = props;
-
-  const { type } = fieldProps;
   const isPassword = type === "password";
 
   const handleToggleShowPassword = useCallback(
@@ -46,17 +47,36 @@ const BaseFieldText: ForwardRefRenderFunction<
   }, [handleToggleShowPassword, showPassword]);
 
   return (
-    <S.Container>
-      <S.Label>{label}</S.Label>
+    <S.Container error={Boolean(error)}>
+      <S.LabelContainer>
+        <S.Label>{label}</S.Label>
+      </S.LabelContainer>
 
       <S.Field disabled={disabled}>
-        <S.Input
-          {...fieldProps}
-          ref={ref}
-          type={showPassword ? "text" : type}
-        />
+        {mask ? (
+          <S.InputMask
+            {...fieldProps}
+            mask={mask}
+            ref={ref as any}
+            type={showPassword ? "text" : type}
+          />
+        ) : (
+          <S.Input
+            {...fieldProps}
+            ref={ref}
+            type={showPassword ? "text" : type}
+          />
+        )}
+
         {isPassword && <PasswordIcon />}
       </S.Field>
+
+      {error && (
+        <S.ErrorContainer>
+          <S.ErrorIcon size={20} weight="fill" />
+          <S.ErrorMessage>{error.message}</S.ErrorMessage>
+        </S.ErrorContainer>
+      )}
     </S.Container>
   );
 };

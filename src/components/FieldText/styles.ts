@@ -1,10 +1,35 @@
-import { Eye, EyeSlash } from "phosphor-react";
+import { Eye, EyeSlash, WarningCircle } from "phosphor-react";
 import { styled } from "src/styles/theme";
+import ReactInputMask from "react-input-mask";
 
 export const Container = styled("div", {
+  variants: {
+    error: {
+      true: {
+        "& > div": {
+          border: "1px solid $red500",
+        },
+
+        "& label": {
+          color: "$red500",
+        },
+
+        "& input::placeholder, & input": {
+          color: "$red500",
+        },
+      },
+    },
+  },
+
   display: "flex",
   flexDirection: "column",
   gap: "$2",
+});
+
+export const LabelContainer = styled("header", {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
 });
 
 export const Label = styled("label", {
@@ -13,12 +38,19 @@ export const Label = styled("label", {
   fontWeight: 600,
 });
 
+export const ErrorIcon = styled(WarningCircle, {
+  color: "$red500",
+});
+
 export const Field = styled("div", {
   variants: {
     disabled: {
       true: {
         opacity: 0.5,
-        cursor: "not-allowed",
+
+        "& input": {
+          cursor: "not-allowed",
+        },
       },
     },
   },
@@ -69,10 +101,41 @@ export const Input = styled("input", {
   },
 });
 
+export const InputMask = styled(ReactInputMask, {
+  "&": {
+    all: "unset",
+  },
+
+  width: "100%",
+  height: "100%",
+
+  background: "$gray100 !important",
+  color: "$blue500",
+
+  "&::placeholder": {
+    color: "$blue500",
+    opacity: 0.5,
+  },
+
+  "&::-ms-reveal, &::-ms-clear": {
+    display: "none",
+  },
+});
+
 export const ShowPasswordIcon = styled(Eye, {
   cursor: "pointer",
 });
 
 export const HidePasswordIcon = styled(EyeSlash, {
   cursor: "pointer",
+});
+
+export const ErrorContainer = styled("span", {
+  display: "flex",
+  alignItems: "center",
+  gap: "$2",
+});
+
+export const ErrorMessage = styled("sup", {
+  color: "$red500",
 });

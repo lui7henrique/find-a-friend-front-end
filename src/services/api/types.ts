@@ -19,10 +19,27 @@ export type Pet = {
   energy_level: Level;
   independency_level: Level;
   ambient: Size;
-  type: Type
+  type: Type;
 };
 
-
 export type GetPetParams = {
-  type?: Type
-}
+  type?: Type;
+};
+
+export type OrgRegisterBody = {
+  responsible_name: string;
+  email: string;
+  postal_code: string;
+  address: string;
+  neighborhood: string;
+  number: string;
+  city: string;
+  state: string;
+  whatsapp_number: string;
+  password: string;
+};
+
+export type OrgLoginBody = {
+  email: string;
+  password: string;
+};

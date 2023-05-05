@@ -16,6 +16,13 @@ export const Container = styled("button", {
         color: "$blue500",
       },
     },
+    disabled: {
+      true: {
+        pointerEvents: "none",
+        opacity: "0.5",
+        cursor: "not-allowed",
+      },
+    },
   },
   defaultVariants: {
     variant: "primary",
