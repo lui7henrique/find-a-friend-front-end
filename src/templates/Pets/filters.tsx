@@ -17,6 +17,7 @@ import { sizeOptions } from "src/utils/size";
 import { FilterPetForm } from "./types";
 import { MagnifyingGlass } from "phosphor-react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const DynamicSelect = dynamic(() => import("../../components/Select"), {
   loading: () => <></>,
@@ -65,12 +66,14 @@ export const PetsFilters = () => {
   return (
     <S.Aside>
       <S.AsideHeader>
-        <S.AsideLogo
-          src="/assets/minimal_logo.svg"
-          width="46"
-          height="46"
-          alt="Logo"
-        />
+        <Link href="/">
+          <S.AsideLogo
+            src="/assets/minimal_logo.svg"
+            width="46"
+            height="46"
+            alt="Logo"
+          />
+        </Link>
 
         <S.AsideHeaderFilters onSubmit={handleSubmit(onSubmit)}>
           <Controller

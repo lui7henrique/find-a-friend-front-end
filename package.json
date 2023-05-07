@@ -24,6 +24,7 @@
     "classnames": "^2.3.2",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
+    "js-cookie": "^3.0.5",
     "next": "13.3.0",
     "nextjs-progressbar": "^0.0.16",
     "phosphor-icons": "^1.4.2",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "@types/aos": "^3.0.4",
+    "@types/js-cookie": "^3.0.3",
     "@types/react-input-mask": "^3.0.2",
     "@types/uuid": "^9.0.1"
   }

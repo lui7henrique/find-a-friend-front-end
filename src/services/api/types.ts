@@ -43,3 +43,7 @@ export type OrgLoginBody = {
   email: string;
   password: string;
 };
+
+export type OrgLoginResponse = {
+  token: string;
+};

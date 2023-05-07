@@ -9,6 +9,7 @@ import { OrgLoginBody } from "src/services/api/types";
 
 import { z } from "zod";
 import { api } from "src/services/api";
+import { useAuth } from "src/hooks/useAuth";
 
 const schema = z.object({
   email: z.string().min(1).email(),
@@ -20,17 +21,22 @@ export const OrgLoginTemplate = () => {
   const { push } = useRouter();
   const fields = watch();
 
+  const { login } = useAuth();
+
   const isSubmitButtonEnabled = useMemo(() => {
     const { success } = schema.safeParse(fields);
 
     return success;
   }, [fields]);
 
-  const onSubmit = useCallback(async (data: OrgLoginBody) => {
-    try {
-      await api.login(data);
-    } catch {}
-  }, []);
+  const onSubmit = useCallback(
+    async (data: OrgLoginBody) => {
+      try {
+        await login(data.email, data.password);
+      } catch {}
+    },
+    [login]
+  );
 
   return (
     <S.Container>

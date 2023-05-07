@@ -1,7 +1,13 @@
 import axios from "axios";
-import { GetPetParams, GetPets, OrgLoginBody, OrgRegisterBody } from "./types";
+import {
+  GetPetParams,
+  GetPets,
+  OrgLoginBody,
+  OrgLoginResponse,
+  OrgRegisterBody,
+} from "./types";
 
-const client = axios.create({
+export const client = axios.create({
   baseURL: "https://find-a-friend-back-end.onrender.com",
 });
 
@@ -21,7 +27,7 @@ export const api = {
     });
   },
   login: async (body: OrgLoginBody) => {
-    const { data } = await client.post("/login", { ...body });
+    const { data } = await client.post<OrgLoginResponse>("/login", { ...body });
 
     return data;
   },

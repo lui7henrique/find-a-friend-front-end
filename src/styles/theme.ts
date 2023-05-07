@@ -93,6 +93,8 @@ export const {
     },
     widths: {
       aside: "24.5rem",
+      menu: "6rem",
+      form: "44rem",
     },
   },
 });
