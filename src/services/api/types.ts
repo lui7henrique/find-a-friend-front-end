@@ -47,3 +47,18 @@ export type OrgLoginBody = {
 export type OrgLoginResponse = {
   token: string;
 };
+
+export type OrgProfileResponse = {
+  address: string;
+  city: string;
+  created_at: string;
+  email: string;
+  id: string;
+  neighborhood: string;
+  number: string;
+  password_hash: string;
+  postal_code: string;
+  responsible_name: string;
+  state: string;
+  whatsapp_number: string;
+};

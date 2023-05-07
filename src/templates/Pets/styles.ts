@@ -24,10 +24,6 @@ export const AsideHeader = styled("header", {
   padding: "$20 $10 $10 $10",
 });
 
-export const AsideLogo = styled(Image, {
-  marginBottom: "$6",
-});
-
 export const AsideHeaderFilters = styled("form", {
   display: "grid",
   gridTemplateColumns: "1fr 2fr auto",

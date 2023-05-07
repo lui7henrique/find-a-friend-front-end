@@ -4,6 +4,7 @@ import {
   GetPets,
   OrgLoginBody,
   OrgLoginResponse,
+  OrgProfileResponse,
   OrgRegisterBody,
 } from "./types";
 
@@ -28,6 +29,11 @@ export const api = {
   },
   login: async (body: OrgLoginBody) => {
     const { data } = await client.post<OrgLoginResponse>("/login", { ...body });
+
+    return data;
+  },
+  profile: async () => {
+    const { data } = await client.get<OrgProfileResponse>("/profile");
 
     return data;
   },

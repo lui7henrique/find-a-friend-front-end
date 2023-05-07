@@ -12,6 +12,12 @@ export const Menu = styled("aside", {
 
   height: "100%",
   width: "$menu",
+
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+
+  padding: "$8 $6",
 });
 
 export const Content = styled("div", {
@@ -28,21 +34,4 @@ export const Main = styled("main", {
   display: "flex",
   flexDirection: "column",
   gap: "$8",
-});
-
-export const Header = styled("header", {
-  display: "flex",
-  background: "$blue500",
-  padding: "$10",
-  borderRadius: "$lg",
-});
-
-export const Form = styled("div", {
-  display: "flex",
-
-  background: "$white",
-  border: "1px solid $gray200",
-
-  padding: "$16 $20",
-  borderRadius: "$lg",
 });

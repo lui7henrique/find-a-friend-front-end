@@ -8,7 +8,9 @@ export const colors = {
   red600: "#E44449",
 
   yellow500: "#F4D35E",
+  yellow600: "#F27006",
 
+  blue200: "#114A80",
   blue300: "#0d3b6666",
   blue400: "#1c64a52e",
   blue500: "#0D3B66",
