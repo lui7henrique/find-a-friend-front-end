@@ -9,8 +9,11 @@ import { sizeOptions } from "src/utils/size";
 import { FieldImages } from "src/components/FieldImages";
 import { use, useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
-import { RegisterPetSchema } from "./schema";
+import { RegisterPetSchema, registerPetSchema } from "./schema";
 import { theme } from "src/styles/theme";
+import { Button } from "src/components/Button";
+import { ButtonRemove } from "src/components/ButtonRemove";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const defaultSelectProps: Omit<SelectProps, "placeholder"> = {
   triggerProps: {
@@ -18,17 +21,28 @@ const defaultSelectProps: Omit<SelectProps, "placeholder"> = {
   },
 };
 
+const {
+  colors: {
+    red500: { value: red },
+  },
+} = theme;
+
 export const OrgRegisterTemplateForm = () => {
   const [images, setImages] = useState<Array<File>>([]);
 
-  const { control, handleSubmit } = useForm<RegisterPetSchema>();
-  const { fields, append } = useFieldArray({ control, name: "requirements" });
-
   const {
-    colors: {
-      red500: { value: red },
-    },
-  } = theme;
+    control,
+    handleSubmit,
+    formState: { errors },
+    register,
+  } = useForm<RegisterPetSchema>({
+    resolver: zodResolver(registerPetSchema),
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "requirements",
+  });
 
   const handleChange = (image: File) => {
     setImages((prevImages) => [...prevImages, image]);
@@ -48,11 +62,19 @@ export const OrgRegisterTemplateForm = () => {
       <S.FormDivider />
 
       <S.FormFields>
-        <FieldText label="Nome" placeholder="Digite o nome do animal" />
+        <FieldText
+          label="Nome"
+          placeholder="Digite o nome do animal"
+          error={errors.name}
+          {...register("name")}
+        />
+
         <FieldTextArea
           label="Sobre"
           placeholder="Escreva uma breve descrição sobre o animal"
           maxLength={300}
+          error={errors.about}
+          {...register("about")}
         />
 
         <DynamicSelect
@@ -115,18 +137,27 @@ export const OrgRegisterTemplateForm = () => {
 
       <S.FormFields>
         {fields.map((field, index) => {
+          const error = errors?.requirements?.[index]?.value;
+
           return (
             <FieldText
               label={index === 0 ? "Requisito" : undefined}
               placeholder="Defina um requisito"
               key={field.id}
+              rightElement={<ButtonRemove onClick={() => remove(index)} />}
+              error={error}
+              {...register(`requirements.${index}.value`)}
             />
           );
         })}
 
-        <S.FormAddMoreButton onClick={() => append({ requirement: "" })}>
-          <S.FormAddMoreButtonIcon weight="bold" color={red} size={24} />
+        <S.FormAddMoreButton onClick={() => append({ value: "" })}>
+          <S.FormAddMoreButtonIcon weight="bold" color={red} size={20} />
         </S.FormAddMoreButton>
+
+        <Button variant="tertiary" type="submit">
+          Confirmar
+        </Button>
       </S.FormFields>
     </S.Form>
   );

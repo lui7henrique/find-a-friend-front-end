@@ -16,6 +16,10 @@ export const Container = styled("button", {
         background: "$gray100",
         color: "$blue500",
       },
+      tertiary: {
+        background: "$yellow500",
+        color: "$blue500",
+      },
     },
     disabled: {
       true: {

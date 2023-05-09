@@ -2,14 +2,13 @@ import { useRef } from "react";
 import { Field } from "../Field";
 
 import * as S from "./styles";
-import { theme } from "src/styles/theme";
 import { FieldImagesProps } from "./types";
+import { ButtonRemove } from "../ButtonRemove";
 
 export const FieldImages = (props: FieldImagesProps) => {
   const { images, onChange, onRemove } = props;
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const { colors } = theme;
 
   return (
     <Field label="Fotos">
@@ -35,13 +34,7 @@ export const FieldImages = (props: FieldImagesProps) => {
               <S.ImageName>{image.name}</S.ImageName>
             </S.ImageInfos>
 
-            <S.ImageRemoveIconContainer onClick={() => onRemove(image)}>
-              <S.ImageRemoveIcon
-                size={16}
-                weight="bold"
-                color={colors["red500"].value}
-              />
-            </S.ImageRemoveIconContainer>
+            <ButtonRemove onClick={() => onRemove(image)} />
           </S.Image>
         );
       })}

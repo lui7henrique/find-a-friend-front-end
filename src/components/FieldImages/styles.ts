@@ -38,7 +38,7 @@ export const Image = styled("div", {
   justifyContent: "space-between",
   alignItems: "center",
 
-  padding: "$3",
+  padding: "$4",
   background: "transparent",
   border: "1px solid $gray200",
   borderRadius: "$md",
@@ -55,16 +55,4 @@ export const ImageIcon = styled(File, {});
 export const ImageName = styled("h5", {
   fontSize: "$sm",
   color: "$blue500",
-});
-
-export const ImageRemoveIconContainer = styled("div", {
-  border: "2px solid $red500",
-  borderRadius: "4px",
-  cursor: "pointer",
-});
-
-export const ImageRemoveIcon = styled(X, {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
 });

@@ -14,7 +14,7 @@ const BaseFieldText: ForwardRefRenderFunction<
   HTMLInputElement,
   FieldTextProps
 > = (props, ref) => {
-  const { label, mask, error, disabled, ...fieldProps } = props;
+  const { label, mask, error, rightElement, disabled, ...fieldProps } = props;
   const { type } = fieldProps;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -65,6 +65,7 @@ const BaseFieldText: ForwardRefRenderFunction<
         )}
 
         {isPassword && <PasswordIcon />}
+        {rightElement && rightElement}
       </S.Field>
     </Field>
   );
