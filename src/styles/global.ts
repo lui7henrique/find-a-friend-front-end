@@ -9,6 +9,7 @@ export const globalStyles = globalCss({
 
   body: {
     fontFamily: "Nunito, sans-serif",
+    scrollBehavior: "smooth",
   },
 
   ".not-scrollable": {

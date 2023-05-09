@@ -11,7 +11,7 @@ export const FieldImages = (props: FieldImagesProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <Field label="Fotos">
+    <Field label="Imagens">
       <S.Container onClick={() => inputRef.current?.click()}>
         <S.UploadIcon size={24} color="#0D3B66" />
         <S.UploadLabel>Arraste e solte o arquivo da imagem.</S.UploadLabel>

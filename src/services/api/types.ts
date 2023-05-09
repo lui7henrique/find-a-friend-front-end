@@ -62,3 +62,14 @@ export type OrgProfileResponse = {
   state: string;
   whatsapp_number: string;
 };
+
+export type PetRegisterBody = {
+  name: string;
+  description: string;
+  age: number;
+  size: string;
+  energy_level: string;
+  independency_level: string;
+  ambient: string;
+  type: string;
+};

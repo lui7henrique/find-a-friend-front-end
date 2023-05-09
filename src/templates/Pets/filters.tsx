@@ -65,9 +65,8 @@ export const PetsFilters = () => {
 
   return (
     <S.Aside>
-      <BasicLogo />
-
       <S.AsideHeader>
+        <BasicLogo />
         <S.AsideHeaderFilters onSubmit={handleSubmit(onSubmit)}>
           <Controller
             control={control}

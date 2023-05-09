@@ -6,6 +6,7 @@ import {
   OrgLoginResponse,
   OrgProfileResponse,
   OrgRegisterBody,
+  PetRegisterBody,
 } from "./types";
 
 export const client = axios.create({
@@ -34,6 +35,11 @@ export const api = {
   },
   profile: async () => {
     const { data } = await client.get<OrgProfileResponse>("/profile");
+
+    return data;
+  },
+  registerPet: async (body: PetRegisterBody) => {
+    const { data } = await client.post("/pets", body);
 
     return data;
   },

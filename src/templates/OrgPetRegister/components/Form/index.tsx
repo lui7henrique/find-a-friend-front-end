@@ -1,19 +1,26 @@
+import { useState } from "react";
+import { useFieldArray, useForm, Controller } from "react-hook-form";
+
 import { FieldText } from "src/components/FieldText";
-import * as S from "./styles";
 import { FieldTextArea } from "src/components/FieldTextArea";
 import { DynamicSelect } from "src/components/FieldSelect";
 import { SelectProps } from "src/components/FieldSelect/types";
+import { Button } from "src/components/Button";
+import { ButtonRemove } from "src/components/ButtonRemove";
+import { FieldImages } from "src/components/FieldImages";
+
 import { ageOptions } from "src/utils/ages";
 import { levelOptions } from "src/utils/level";
 import { sizeOptions } from "src/utils/size";
-import { FieldImages } from "src/components/FieldImages";
-import { use, useEffect, useState } from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+
 import { RegisterPetSchema, registerPetSchema } from "./schema";
-import { theme } from "src/styles/theme";
-import { Button } from "src/components/Button";
-import { ButtonRemove } from "src/components/ButtonRemove";
+
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import { theme } from "src/styles/theme";
+import * as S from "./styles";
+import { api } from "src/services/api";
+import { typeOptions } from "src/utils/type";
 
 const defaultSelectProps: Omit<SelectProps, "placeholder"> = {
   triggerProps: {
@@ -44,7 +51,7 @@ export const OrgRegisterTemplateForm = () => {
     name: "requirements",
   });
 
-  const handleChange = (image: File) => {
+  const handleChangeImage = (image: File) => {
     setImages((prevImages) => [...prevImages, image]);
   };
 
@@ -52,8 +59,11 @@ export const OrgRegisterTemplateForm = () => {
     setImages((prevImages) => [...prevImages.filter((i) => i !== image)]);
   };
 
-  const onSubmit = (data: RegisterPetSchema) => {
-    console.log({ data });
+  const onSubmit = async (data: RegisterPetSchema) => {
+    await api.registerPet({
+      ...data,
+      age: Number(data.age),
+    });
   };
 
   return (
@@ -70,63 +80,135 @@ export const OrgRegisterTemplateForm = () => {
         />
 
         <FieldTextArea
-          label="Sobre"
+          label="Descrição"
           placeholder="Escreva uma breve descrição sobre o animal"
           maxLength={300}
-          error={errors.about}
-          {...register("about")}
+          error={errors.description}
+          {...register("description")}
         />
 
-        <DynamicSelect
-          label="Idade"
-          placeholder="Selecione a idade"
-          groups={[
-            {
-              group: `Idades (0-30)`,
-              options: ageOptions,
-            },
-          ]}
-          {...defaultSelectProps}
+        <Controller
+          control={control}
+          name="age"
+          render={({ field }) => (
+            <DynamicSelect
+              label="Idade"
+              placeholder="Selecione a idade"
+              groups={[
+                {
+                  group: `Idades (0-30)`,
+                  options: ageOptions,
+                },
+              ]}
+              error={errors.age}
+              {...field}
+              {...defaultSelectProps}
+            />
+          )}
         />
 
-        <DynamicSelect
-          label="Tamanho"
-          placeholder="Selecione o tamanho"
-          groups={[
-            {
-              group: "Tamanho",
-              options: sizeOptions,
-            },
-          ]}
-          {...defaultSelectProps}
+        <Controller
+          control={control}
+          name="size"
+          render={({ field }) => (
+            <DynamicSelect
+              label="Tamanho"
+              placeholder="Selecione o tamanho"
+              groups={[
+                {
+                  group: "Tamanho",
+                  options: sizeOptions,
+                },
+              ]}
+              error={errors.size}
+              {...field}
+              {...defaultSelectProps}
+            />
+          )}
         />
 
-        <DynamicSelect
-          label="Nível de independência"
-          placeholder="Selecione o nível de independência"
-          groups={[
-            {
-              group: "Nível de independência",
-              options: sizeOptions,
-            },
-          ]}
-          {...defaultSelectProps}
+        <Controller
+          control={control}
+          name="independency_level"
+          render={({ field }) => (
+            <DynamicSelect
+              label="Nível de independência"
+              placeholder="Selecione o nível de independência"
+              groups={[
+                {
+                  group: "Nível de independência",
+                  options: levelOptions,
+                },
+              ]}
+              error={errors.independency_level}
+              {...field}
+              {...defaultSelectProps}
+            />
+          )}
         />
 
-        <DynamicSelect
-          label="Nível de energia"
-          placeholder="Selecione o nível de energia"
-          groups={[
-            {
-              group: "Nível de energia",
-              options: levelOptions,
-            },
-          ]}
-          {...defaultSelectProps}
+        <Controller
+          control={control}
+          name="energy_level"
+          render={({ field }) => (
+            <DynamicSelect
+              label="Nível de energia"
+              placeholder="Selecione o nível de energia"
+              groups={[
+                {
+                  group: "Nível de energia",
+                  options: levelOptions,
+                },
+              ]}
+              error={errors.energy_level}
+              {...field}
+              {...defaultSelectProps}
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="ambient"
+          render={({ field }) => (
+            <DynamicSelect
+              label="Ambiente"
+              placeholder="Selecione o tamanho do ambiente"
+              groups={[
+                {
+                  group: "Tamanho do ambiente",
+                  options: sizeOptions,
+                },
+              ]}
+              error={errors.ambient}
+              {...field}
+              {...defaultSelectProps}
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="type"
+          render={({ field }) => (
+            <DynamicSelect
+              label="Tipo"
+              placeholder="Selecione o tipo do animal"
+              groups={[
+                {
+                  group: "Tipo do animal",
+                  options: typeOptions,
+                },
+              ]}
+              error={errors.type}
+              {...field}
+              {...defaultSelectProps}
+            />
+          )}
         />
 
         <FieldImages
-          onChange={handleChange}
+          onChange={handleChangeImage}
           onRemove={handleRemoveImage}
           images={images}
         />

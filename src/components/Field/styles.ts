@@ -5,8 +5,30 @@ export const Container = styled("div", {
   variants: {
     error: {
       true: {
-        "& > div": {
+        textarea: {
           border: "1px solid $red500",
+          borderRadius: "$md",
+
+          "&::placeholder": {
+            color: "$red500",
+          },
+        },
+
+        "div:has(input)": {
+          border: "1px solid $red500",
+          borderRadius: "$md",
+
+          "&::placeholder": {
+            color: "$red500",
+          },
+        },
+
+        button: {
+          border: "1px solid $red500",
+
+          "&[data-placeholder]": {
+            color: "$red500",
+          },
         },
 
         "& label": {
