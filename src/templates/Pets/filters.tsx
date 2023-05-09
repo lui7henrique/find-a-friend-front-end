@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 
 import * as S from "./styles";
 
-import { SelectOptions } from "src/components/Select/types";
+import { SelectOptions } from "src/components/FieldSelect/types";
 import { IconButton } from "src/components/IconButton";
 
 import { ibge } from "src/services/ibge";
@@ -17,10 +17,9 @@ import { sizeOptions } from "src/utils/size";
 import { FilterPetForm } from "./types";
 import { MagnifyingGlass } from "phosphor-react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { BasicLogo } from "src/components/BasicLogo";
 
-const DynamicSelect = dynamic(() => import("../../components/Select"), {
+const DynamicSelect = dynamic(() => import("../../components/FieldSelect"), {
   loading: () => <></>,
   ssr: false,
 });

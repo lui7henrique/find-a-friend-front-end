@@ -2,6 +2,10 @@ import { z } from "zod";
 
 export const registerSchema = z
   .object({
+    name: z
+      .string()
+      .min(1, { message: "Nome da organização é um campo obrigatório." }),
+
     responsible_name: z
       .string()
       .min(1, { message: "Nome do responsável é um campo obrigatório." }),

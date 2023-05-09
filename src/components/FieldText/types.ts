@@ -1,9 +1,9 @@
 import { FieldError } from "react-hook-form";
 import * as S from "./styles";
+import { FieldProps } from "../Field/types";
 
 export type FieldTextProps = {
-  label: string;
   disabled?: boolean;
   mask?: string;
-  error?: FieldError;
-} & typeof S.Input.defaultProps;
+} & typeof S.Input.defaultProps &
+  Omit<FieldProps, "children">;

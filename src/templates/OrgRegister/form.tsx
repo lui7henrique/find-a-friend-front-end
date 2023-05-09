@@ -15,7 +15,7 @@ import { OrgRegisterBody } from "src/services/api/types";
 import { api } from "src/services/api";
 import { useRouter } from "next/router";
 
-const DynamicSelect = dynamic(() => import("../../components/Select"), {
+const DynamicSelect = dynamic(() => import("../../components/FieldSelect"), {
   loading: () => <></>,
   ssr: false,
 });
@@ -84,6 +84,13 @@ export const OrgRegisterForm = () => {
       <S.Title>Cadastre sua organização </S.Title>
 
       <S.FormFields>
+        <FieldText
+          label="Nome da organização"
+          placeholder="Seu Cãopanheiro"
+          error={errors.name}
+          {...register("name")}
+        />
+
         <FieldText
           label="Nome do responsável"
           placeholder="John Doe"

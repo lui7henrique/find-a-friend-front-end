@@ -6,21 +6,24 @@ import { useQuery } from "react-query";
 
 import { IconButton } from "src/components/IconButton";
 import { statesOptions } from "src/utils/states";
-import { SelectOptions } from "src/components/Select/types";
+import { SelectOptions } from "src/components/FieldSelect/types";
 import { ibge } from "src/services/ibge";
 
 import * as S from "./styles";
 import { SearchPetForm } from "./types";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useProfile } from "src/hooks/useProfile";
 
-const DynamicSelect = dynamic(() => import("../../components/Select"), {
+const DynamicSelect = dynamic(() => import("../../components/FieldSelect"), {
   loading: () => <></>,
   ssr: false,
 });
 
 export const HomeTemplate = () => {
   const { push } = useRouter();
+  const { profile } = useProfile();
+
   const { watch, control, handleSubmit } = useForm<SearchPetForm>();
   const state = watch("state") ?? "SP";
 
@@ -104,7 +107,7 @@ export const HomeTemplate = () => {
               data-aos-delay="1200"
               data-aos-duration="200"
             >
-              <Link href="/org/login">
+              <Link href={profile ? "/org/pet/register" : "/org/login"}>
                 Ou entre como organização, clicando aqui!
               </Link>
             </S.HomeSupport>

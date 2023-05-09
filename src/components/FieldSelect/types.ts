@@ -1,3 +1,4 @@
+import { FieldProps } from "../Field/types";
 import { Input, Root, Trigger } from "./styles";
 
 export type SelectProps = {
@@ -12,7 +13,8 @@ export type SelectProps = {
 
   onChange?: any;
   onBlur?: any;
-} & typeof Root.defaultProps;
+} & typeof Root.defaultProps &
+  Omit<FieldProps, "children">;
 
 export type SelectOptions = Array<{
   label: string;

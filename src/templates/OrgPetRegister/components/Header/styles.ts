@@ -30,7 +30,10 @@ export const HeaderIconContainer = styled("div", {
 
 export const HeaderIcon = styled(Dog, {});
 
-export const HeaderOrgInfos = styled("div", {});
+export const HeaderOrgInfos = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+});
 
 export const HeaderOrgTitle = styled("h1", {});
 

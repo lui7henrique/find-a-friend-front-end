@@ -11,7 +11,7 @@ import { FilterPetForm } from "./types";
 import * as S from "./styles";
 import { useRouter } from "next/router";
 
-const DynamicSelect = dynamic(() => import("../../components/Select"), {
+const DynamicSelect = dynamic(() => import("../../components/FieldSelect"), {
   loading: () => <></>,
   ssr: false,
 });

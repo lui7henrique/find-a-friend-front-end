@@ -1,4 +1,5 @@
 import { styled } from "src/styles/theme";
+import { CircleSpinner } from "react-spinners-kit";
 
 export const Container = styled("button", {
   "&": {
@@ -40,3 +41,5 @@ export const Container = styled("button", {
 
   cursor: "pointer",
 });
+
+export const Spinner = styled(CircleSpinner);

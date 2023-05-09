@@ -8,7 +8,7 @@ import {
 import { FieldTextProps } from "./types";
 
 import * as S from "./styles";
-import { Tooltip } from "../Tooltip";
+import { Field } from "../Field";
 
 const BaseFieldText: ForwardRefRenderFunction<
   HTMLInputElement,
@@ -47,11 +47,7 @@ const BaseFieldText: ForwardRefRenderFunction<
   }, [handleToggleShowPassword, showPassword]);
 
   return (
-    <S.Container error={Boolean(error)}>
-      <S.LabelContainer>
-        <S.Label>{label}</S.Label>
-      </S.LabelContainer>
-
+    <Field error={error} label={label}>
       <S.Field disabled={disabled}>
         {mask ? (
           <S.InputMask
@@ -70,14 +66,7 @@ const BaseFieldText: ForwardRefRenderFunction<
 
         {isPassword && <PasswordIcon />}
       </S.Field>
-
-      {error && (
-        <S.ErrorContainer>
-          <S.ErrorIcon size={20} weight="fill" />
-          <S.ErrorMessage>{error.message}</S.ErrorMessage>
-        </S.ErrorContainer>
-      )}
-    </S.Container>
+    </Field>
   );
 };
 

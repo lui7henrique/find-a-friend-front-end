@@ -19,9 +19,7 @@ export const useProfile = () => {
     if (currentToken) {
       client.defaults.headers["Authorization"] = `Bearer ${currentToken}`;
 
-      if (!profile) {
-        getProfile();
-      }
+      getProfile();
     }
   }, [profile]);
 

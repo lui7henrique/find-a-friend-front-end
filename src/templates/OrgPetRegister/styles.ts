@@ -3,14 +3,19 @@ import { styled } from "src/styles/theme";
 export const Container = styled("div", {
   display: "flex",
 
-  height: "100vh",
   width: "100vw",
+  height: "100vh",
+  overflow: "hidden",
+
+  body: {
+    overflow: "hidden",
+  },
 });
 
 export const Menu = styled("aside", {
   background: "$red500",
 
-  height: "100%",
+  height: "100vh",
   width: "$menu",
 
   display: "flex",
@@ -21,8 +26,9 @@ export const Menu = styled("aside", {
 });
 
 export const Content = styled("div", {
-  width: "calc(100vw - $menu)",
+  width: "100%",
   background: "$red200",
+  overflowY: "auto",
 });
 
 export const Main = styled("main", {

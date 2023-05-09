@@ -17,7 +17,12 @@ const schema = z.object({
 });
 
 export const OrgLoginTemplate = () => {
-  const { register, watch, handleSubmit } = useForm<OrgLoginBody>();
+  const {
+    register,
+    watch,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<OrgLoginBody>();
   const { push } = useRouter();
   const fields = watch();
 
@@ -66,7 +71,9 @@ export const OrgLoginTemplate = () => {
         </S.FormFields>
 
         <S.Buttons>
-          <Button disabled={!isSubmitButtonEnabled}>Entrar</Button>
+          <Button disabled={!isSubmitButtonEnabled} loading={isSubmitting}>
+            Entrar
+          </Button>
 
           <Button variant="secondary" onClick={() => push("/org/register")}>
             Cadastrar minha organização

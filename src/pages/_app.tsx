@@ -8,12 +8,15 @@ import { globalStyles } from "src/styles/global";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { colors } from "src/styles/theme";
+import { useRouter } from "next/router";
 
 globalStyles();
 
 const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
+  const { asPath } = useRouter();
+
   useEffect(() => {
     AOS.init({
       easing: "ease-out-cubic",
@@ -21,6 +24,14 @@ export default function App({ Component, pageProps }: AppProps) {
       duration: 250,
     });
   }, []);
+
+  useEffect(() => {
+    if (asPath === "/org/pet/register") {
+      return document.body.classList.add("not-scrollable");
+    }
+
+    document.body.classList.remove("not-scrollable");
+  }, [asPath]);
 
   return (
     <QueryClientProvider client={queryClient}>
