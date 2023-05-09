@@ -29,7 +29,13 @@ const FieldSelect = (props: SelectProps) => {
   } = props;
 
   return (
-    <Field label={label} error={error}>
+    <Field
+      label={label}
+      labelProps={{
+        color: triggerProps?.variant !== "input" ? "white" : "blue",
+      }}
+      error={error}
+    >
       <S.Root onValueChange={onChange} {...rootProps}>
         <S.Container>
           <S.Trigger {...triggerProps}>

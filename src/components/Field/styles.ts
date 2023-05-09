@@ -55,8 +55,22 @@ export const LabelContainer = styled("header", {
 });
 
 export const Label = styled("label", {
-  fontSize: "$md",
-  color: "$blue500",
+  variants: {
+    color: {
+      white: {
+        color: "$white",
+      },
+      blue: {
+        color: "$blue500",
+      },
+    },
+  },
+
+  defaultVariants: {
+    color: "blue",
+  },
+
+  fontSize: "$sm",
   fontWeight: 600,
 });
 
