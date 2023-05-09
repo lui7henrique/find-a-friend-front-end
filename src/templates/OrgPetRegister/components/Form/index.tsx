@@ -10,6 +10,7 @@ import { FieldImages } from "src/components/FieldImages";
 import { use, useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { RegisterPetSchema } from "./schema";
+import { theme } from "src/styles/theme";
 
 const defaultSelectProps: Omit<SelectProps, "placeholder"> = {
   triggerProps: {
@@ -20,8 +21,14 @@ const defaultSelectProps: Omit<SelectProps, "placeholder"> = {
 export const OrgRegisterTemplateForm = () => {
   const [images, setImages] = useState<Array<File>>([]);
 
-  const { control } = useForm<RegisterPetSchema>();
+  const { control, handleSubmit } = useForm<RegisterPetSchema>();
   const { fields, append } = useFieldArray({ control, name: "requirements" });
+
+  const {
+    colors: {
+      red500: { value: red },
+    },
+  } = theme;
 
   const handleChange = (image: File) => {
     setImages((prevImages) => [...prevImages, image]);
@@ -31,12 +38,12 @@ export const OrgRegisterTemplateForm = () => {
     setImages((prevImages) => [...prevImages.filter((i) => i !== image)]);
   };
 
-  const handleSubmit = (data: RegisterPetSchema) => {
+  const onSubmit = (data: RegisterPetSchema) => {
     console.log({ data });
   };
 
   return (
-    <S.Form>
+    <S.Form onSubmit={handleSubmit(onSubmit)}>
       <S.FormTitle>Adicione um pet</S.FormTitle>
       <S.FormDivider />
 
@@ -116,7 +123,10 @@ export const OrgRegisterTemplateForm = () => {
             />
           );
         })}
-        <S.FormAddMoreButton />
+
+        <S.FormAddMoreButton onClick={() => append({ requirement: "" })}>
+          <S.FormAddMoreButtonIcon weight="bold" color={red} size={24} />
+        </S.FormAddMoreButton>
       </S.FormFields>
     </S.Form>
   );

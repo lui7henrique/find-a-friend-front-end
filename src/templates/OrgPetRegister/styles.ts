@@ -2,14 +2,6 @@ import { styled } from "src/styles/theme";
 
 export const Container = styled("div", {
   display: "flex",
-
-  width: "100vw",
-  height: "100vh",
-  overflow: "hidden",
-
-  body: {
-    overflow: "hidden",
-  },
 });
 
 export const Menu = styled("aside", {
@@ -23,12 +15,18 @@ export const Menu = styled("aside", {
   justifyContent: "space-between",
 
   padding: "$8 $6",
+
+  position: "fixed",
+  top: 0,
+  left: 0,
 });
 
 export const Content = styled("div", {
-  width: "100%",
+  width: "120vw",
   background: "$red200",
   overflowY: "auto",
+
+  marginLeft: "6rem !important",
 });
 
 export const Main = styled("main", {

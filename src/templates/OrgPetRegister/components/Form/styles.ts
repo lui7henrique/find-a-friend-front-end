@@ -1,3 +1,4 @@
+import { Plus } from "phosphor-react";
 import { styled } from "src/styles/theme";
 
 export const Form = styled("form", {
@@ -46,10 +47,13 @@ export const FormAddMoreButton = styled("button", {
 
   padding: "$6",
   borderRadius: "$md",
+  cursor: "pointer",
+
+  transition: "all 0.2s ease-in-out",
+
+  "&:hover": {
+    background: "$red500_030",
+  },
 });
 
-export const FormGrid = styled("div", {
-  display: "grid",
-  gridTemplateColumns: "repeat(2, 1fr)",
-  gap: "$4",
-});
+export const FormAddMoreButtonIcon = styled(Plus, {});

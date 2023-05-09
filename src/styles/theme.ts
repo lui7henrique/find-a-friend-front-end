@@ -6,6 +6,7 @@ export const colors = {
   red400: "#F75F64",
   red500: "#F15156",
   red500_010: "rgba(252, 134, 134, 0.1)",
+  red500_030: "rgba(252, 134, 134, 0.3)",
   red600: "#E44449",
 
   yellow500: "#F4D35E",

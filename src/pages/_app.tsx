@@ -15,8 +15,6 @@ globalStyles();
 const queryClient = new QueryClient();
 
 export default function App({ Component, pageProps }: AppProps) {
-  const { asPath } = useRouter();
-
   useEffect(() => {
     AOS.init({
       easing: "ease-out-cubic",
@@ -24,14 +22,6 @@ export default function App({ Component, pageProps }: AppProps) {
       duration: 250,
     });
   }, []);
-
-  useEffect(() => {
-    if (asPath === "/org/pet/register") {
-      return document.body.classList.add("not-scrollable");
-    }
-
-    document.body.classList.remove("not-scrollable");
-  }, [asPath]);
 
   return (
     <QueryClientProvider client={queryClient}>
