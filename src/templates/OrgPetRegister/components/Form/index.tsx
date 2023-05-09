@@ -40,7 +40,7 @@ export const OrgRegisterTemplateForm = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     register,
   } = useForm<RegisterPetSchema>({
     resolver: zodResolver(registerPetSchema),
@@ -237,7 +237,7 @@ export const OrgRegisterTemplateForm = () => {
           <S.FormAddMoreButtonIcon weight="bold" color={red} size={20} />
         </S.FormAddMoreButton>
 
-        <Button variant="tertiary" type="submit">
+        <Button variant="tertiary" type="submit" loading={isSubmitting}>
           Confirmar
         </Button>
       </S.FormFields>
